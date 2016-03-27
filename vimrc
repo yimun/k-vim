@@ -23,6 +23,10 @@
 " Initial Plugin 加载插件
 "==========================================
 
+"tmux 背景色显示异常处理
+"http://stackoverflow.com/questions/6427650/vim-in-tmux-background-color-changes-when-paging
+set t_ut=
+
 " 修改leader键
 let mapleader = ','
 let g:mapleader = ','
@@ -91,14 +95,14 @@ set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 
 " 突出显示当前列
-set cursorcolumn
+" set cursorcolumn
 " 突出显示当前行
 set cursorline
 
 
 " 设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制, 不需要可以去掉
 " 好处：误删什么的，如果以前屏幕打开，可以找回
-set t_ti= t_te=
+" set t_ti= t_te=
 
 
 " 鼠标暂不启用, 键盘党....
@@ -425,7 +429,7 @@ cnoremap <C-e> <End>
 
 " 搜索相关
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+" map <space> /
 " 进入搜索Use sane regexes"
 nnoremap / /\v
 vnoremap / /\v
@@ -513,6 +517,7 @@ map Y y$
 " 复制选中区到系统剪切板中
 vnoremap <leader>y "+y
 
+
 " auto jump to end of select
 " vnoremap <silent> y y`]
 " vnoremap <silent> p p`]
@@ -531,8 +536,8 @@ cmap w!! w !sudo tee >/dev/null %
 inoremap kj <Esc>
 
 " 滚动Speed up scrolling of the viewport slightly
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
+" nnoremap <C-e> 2<C-e>
+" nnoremap <C-y> 2<C-y>
 
 
 " Jump to start and end of line using the home row keys
@@ -665,8 +670,8 @@ endif
 set background=dark
 set t_Co=256
 
-colorscheme solarized
-" colorscheme molokai
+" colorscheme solarized
+colorscheme molokai
 " colorscheme desert
 
 
