@@ -17,7 +17,7 @@ filetype off " required! turn off
 " inspired by spf13, 自定义需要的插件集合
 if !exists('g:bundle_groups')
     " let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'nginx', 'golang', 'ruby', 'less', 'php', 'coffeescript']
-    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta']
+    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'django']
 endif
 
 " ----------------------------------------------------------------------------
@@ -29,12 +29,9 @@ call plug#begin('~/.vim/bundle')
 
 " 移动光标到插件名上, 使用'#'快速跳转到每个插件的配置处
 
-"----------------------custom
-Plug 'mattn/emmet-vim'
-" emmet-vim{{{
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-" }}}
+Plug 'vim-scripts/a.vim'
+
+Plug 'terryma/vim-smooth-scroll'
 
 "-----------------------
 
@@ -193,7 +190,7 @@ if count(g:bundle_groups, 'python')
     " pythonsyntax
     Plug 'hdima/python-syntax'
     Plug 'hynek/vim-python-pep8-indent'
-    Plug 'Glench/Vim-Jinja2-Syntax'
+    " Plug 'Glench/Vim-Jinja2-Syntax'
 endif
 
 if count(g:bundle_groups, 'php')
@@ -243,6 +240,9 @@ if count(g:bundle_groups, 'css')
 
     " 这个有坑, see issue https://github.com/wklken/k-vim/issues/49
     " Plug 'gorodinskiy/vim-coloresque'
+    "
+    " css颜色显示
+    Plug 'lilydjwg/colorizer'
 endif
 
 if count(g:bundle_groups, 'less')
@@ -253,7 +253,7 @@ endif
 
 if count(g:bundle_groups, 'html')
     " ###### emmet HTML complete #########
-    " Plug "mattn/emmet-vim"
+    Plug 'mattn/emmet-vim'
 endif
 
 if count(g:bundle_groups, 'nginx')
@@ -275,6 +275,12 @@ if count(g:bundle_groups, 'beta')
 endif
 
 
+if count(g:bundle_groups, 'django')
+    " Plug 'vim-scripts/django.vim'
+    Plug 'mjbrownie/vim-htmldjango_omnicomplete'
+
+endif
+
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -284,6 +290,9 @@ call plug#end()
 " syntastic {{{
     " dependence
     " 1. shellcheck `brew install shellcheck` https://github.com/koalaman/shellcheck
+    let g:syntastic_cpp_compiler = 'g++'
+    let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+    let g:syntastic_cpp11_compiler_options = '-std=c++11'
 
     let g:syntastic_error_symbol='>>'
     let g:syntastic_warning_symbol='>'
@@ -375,7 +384,7 @@ call plug#end()
     "let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
 
     " 跳转到定义处, 分屏打开
-    let g:ycm_goto_buffer_command = 'horizontal-split'
+    let g:ycm_goto_buffer_command = 'same-buffer'
     " nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>

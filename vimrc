@@ -95,7 +95,7 @@ set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 
 " 突出显示当前列
-" set cursorcolumn
+set cursorcolumn
 " 突出显示当前行
 set cursorline
 
@@ -106,9 +106,9 @@ set cursorline
 
 
 " 鼠标暂不启用, 键盘党....
-set mouse-=a
+" set mouse-=a
 " 启用鼠标
-" set mouse=a
+set mouse=a
 " Hide the mouse cursor while typing
 " set mousehide
 
@@ -164,7 +164,7 @@ set nowrap
 " 括号配对情况, 跳转并高亮一下匹配的括号
 set showmatch
 " How many tenths of a second to blink when matching brackets
-set matchtime=2
+set matchtime=1
 
 
 " 设置文内智能搜索提示
@@ -178,7 +178,7 @@ set ignorecase
 set smartcase
 
 " 代码折叠
-set foldenable
+" set foldenable
 " 折叠方法
 " manual    手工折叠
 " indent    使用缩进表示折叠
@@ -361,9 +361,11 @@ function! HideNumber()
 endfunc
 nnoremap <F2> :call HideNumber()<CR>
 " F3 显示可打印字符开关
-nnoremap <F3> :set list! list?<CR>
+" nnoremap <F3> :set list! list?<CR>
+nnoremap <F3> :YcmCompleter GoTo<CR>
 " F4 换行开关
-nnoremap <F4> :set wrap! wrap?<CR>
+" nnoremap <F4> :set wrap! wrap?<CR>
+nnoremap <F4> :YcmCompleter GoToReferences<CR>
 
 " F6 语法开关，关闭语法可以加快大文件的展示
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
@@ -516,7 +518,6 @@ map Y y$
 
 " 复制选中区到系统剪切板中
 vnoremap <leader>y "+y
-
 
 " auto jump to end of select
 " vnoremap <silent> y y`]
