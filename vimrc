@@ -364,7 +364,7 @@ nnoremap <F2> :call HideNumber()<CR>
 " nnoremap <F3> :set list! list?<CR>
 nnoremap <F3> :YcmCompleter GoTo<CR>
 " F4 换行开关
-" nnoremap <F4> :set wrap! wrap?<CR>
+nnoremap <F5> :set wrap! wrap?<CR>
 nnoremap <F4> :YcmCompleter GoToReferences<CR>
 
 " F6 语法开关，关闭语法可以加快大文件的展示
