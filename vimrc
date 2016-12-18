@@ -23,6 +23,8 @@
 " Initial Plugin 加载插件
 "==========================================
 
+set clipboard=unnamed
+
 "tmux 背景色显示异常处理
 "http://stackoverflow.com/questions/6427650/vim-in-tmux-background-color-changes-when-paging
 set t_ut=
