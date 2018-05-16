@@ -601,7 +601,7 @@ endif
 " ################### 功能相关 ###################
 
 " ctrlp ctrlpfunky{{{
-    let g:ctrlp_map = '<leader>p'
+    let g:ctrlp_map = '<C-p>'
     let g:ctrlp_cmd = 'CtrlP'
     map <leader>f :CtrlPMRU<CR>
     let g:ctrlp_custom_ignore = {
