@@ -16,7 +16,10 @@ filetype off " required! turn off
 
 " inspired by spf13, 自定义需要的插件集合
 if !exists('g:bundle_groups')
-    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'django']
+    " let g:bundle_groups=['python', 'javascript', 'golang', 'php', 'ruby',
+    " 'shell', 'markdown', 'html', 'css', 'less', 'coffeescript', 'tmux',
+    " 'json', 'beta']]
+    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'django']
 endif
 
 " ----------------------------------------------------------------------------
@@ -28,7 +31,23 @@ call plug#begin('~/.vim/bundle')
 
 " 移动光标到插件名上, 使用'#'快速跳转到每个插件的配置处
 
+" vim-header
+Plug 'alpertuna/vim-header'
+let g:header_field_author = 'yimu'
+let g:header_field_author_email = 'yimulinwei@gmail.com'
+let g:header_auto_add_header = 0
+let g:header_field_timestamp_format = '%Y-%m-%d'
+map <leader>g :AddHeader<CR>
+
+" vimim
+Plug 'vimim'
+" let g:vimim_cloud = 'baidu'
+let g:Vimim_punctuation  = 0
+
+
+" gradle
 Plug 'tfnico/vim-gradle'
+Plug 'udalov/kotlin-vim'
 
 " switch between cpp and h file :A
 Plug 'vim-scripts/a.vim'
@@ -55,7 +74,9 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " 重启 :YcmRestartServer
 Plug 'Valloric/YouCompleteMe'
 " 自动补全单引号，双引号等
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
+
 " 自动补全html/xml标签
 Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
 
@@ -77,7 +98,7 @@ Plug 'junegunn/vim-easy-align'
 " quick movement
 " easymotion
 "更高效的移动 [,, + w/fx/h/j/k/l]
-Plug 'Lokaltog/vim-easymotion'
+" Plug 'Lokaltog/vim-easymotion'
 
 " 更高效的行内移动, f/F/t/T, 才触发
 " quickscope
@@ -114,6 +135,7 @@ Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 " T - Lkie t but focus CtrlSF window instead of opened new tab.
 " q - Quit CtrlSF window.
 Plug 'dyng/ctrlsf.vim'
+nmap <Leader><Leader>c :CtrlSF<space>
 " incsearch
 " Plug 'haya14busa/incsearch.vim'
 " map /  <Plug>(incsearch-forward)
@@ -126,7 +148,7 @@ Plug 'thinca/vim-quickrun'
 
 " git
 " fugitive
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 " gitgutter
 Plug 'airblade/vim-gitgutter'
 
@@ -160,13 +182,13 @@ Plug 'majutsushi/tagbar'
 
 " text object
 " 支持自定义文本对象
-Plug 'kana/vim-textobj-user'
-" 增加行文本对象: l   dal yal cil
-Plug 'kana/vim-textobj-line'
-" 增加文件文本对象: e   dae yae cie
-Plug 'kana/vim-textobj-entire'
-" 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
-Plug 'kana/vim-textobj-indent'
+" Plug 'kana/vim-textobj-user'
+" " 增加行文本对象: l   dal yal cil
+" Plug 'kana/vim-textobj-line'
+" " 增加文件文本对象: e   dae yae cie
+" Plug 'kana/vim-textobj-entire'
+" " 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
+" Plug 'kana/vim-textobj-indent'
 
 if count(g:bundle_groups, 'tmux')
     " tmux
@@ -400,13 +422,17 @@ if has_key(g:plugs, 'ale')
     let g:ale_python_flake8_args="--ignore=E114,E116,E131 --max-line-length=120"
     " --ignore=E225,E124,E712,E116
 
-    let g:ale_sign_error = '>>'
-    let g:ale_sign_warning = '>'
+    let g:ale_sign_error = '✗'
+    let g:ale_sign_warning = '⚡'
 
     let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    "文件内容发生变化时不进行检查
+    let g:ale_lint_on_text_changed = 'never'
+    "打开文件时不进行检查
+    let g:ale_lint_on_enter = 0
 
     nmap <silent> <Leader>ep <Plug>(ale_previous_wrap)
     nmap <silent> <Leader>en <Plug>(ale_next_wrap)
@@ -427,6 +453,7 @@ if has_key(g:plugs, 'ale')
     let g:ale_set_highlights = 1
     highlight clear ALEErrorSign
     highlight clear ALEWarningSign
+
 endif
 
 " }}}
@@ -454,6 +481,9 @@ endif
     " 跳转到定义处, 分屏打开
     let g:ycm_goto_buffer_command = 'horizontal-split'
     let g:ycm_register_as_syntastic_checker = 0
+
+    let g:ycm_enable_diagnostic_signs = 0
+    let g:ycm_enable_diagnostic_highlighting = 0
     " nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>

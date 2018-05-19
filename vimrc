@@ -56,6 +56,15 @@ filetype plugin indent on
 
 " history存储容量
 set history=2000
+" key mapping
+inoremap <C-b> <C-o>h
+inoremap <C-n> <C-o>j
+inoremap <C-p> <C-o>k
+inoremap <C-f> <C-o>l
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>^
+" alt+backspace as delete previous word
+imap <ESC><BS> <C-w>
 
 " 检测文件类型
 filetype on
@@ -98,7 +107,7 @@ set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 
 " 突出显示当前列
-set cursorcolumn
+set nocursorcolumn
 " 突出显示当前行
 set cursorline
 
@@ -644,7 +653,7 @@ set lazyredraw          " redraw only when we need to.
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guifont=Monaco:h14
+    set guifont=Monaco:h13
     if has("gui_gtk2")   "GTK2
         set guifont=Monaco\ 12,Monospace\ 12
     endif
