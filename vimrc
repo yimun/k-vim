@@ -644,7 +644,7 @@ endif
 
 " beta
 " https://dougblack.io/words/a-good-vimrc.html
-set lazyredraw          " redraw only when we need to.
+" set lazyredraw          " redraw only when we need to.
 
 
 "==========================================
@@ -674,7 +674,6 @@ endif
 set background=dark
 set t_Co=256
 
-" colorscheme solarized
 colorscheme molokai
 
 
@@ -692,3 +691,6 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
+
+
+set re=1
